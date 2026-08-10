@@ -1,0 +1,69 @@
+.why-work-with-me {
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.reason-card {
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(184, 115, 51, 0.45);
+  background: rgba(7, 19, 39, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.reason-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--accent-copper), var(--accent-orange));
+  border-radius: 1rem 1rem 0 0;
+}
+
+.reason-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232, 154, 77, 0.7);
+  box-shadow: 0 12px 35px rgba(184, 115, 51, 0.2);
+}
+
+.reason-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(184, 115, 51, 0.2), rgba(37, 99, 235, 0.1));
+  border: 1px solid rgba(184, 115, 51, 0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-orange);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.reason-card:hover .reason-icon {
+  transform: scale(1.1);
+}
+
+.reason-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  background: linear-gradient(90deg, var(--accent-copper), var(--accent-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,82 @@
+.skills {
+  position: relative;
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(184, 115, 51, 0.45);
+  background: rgba(7, 19, 39, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s ease;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--accent-copper), var(--accent-orange));
+  border-radius: 1rem 1rem 0 0;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232, 154, 77, 0.7);
+  box-shadow: 0 12px 35px rgba(184, 115, 51, 0.2);
+}
+
+.skill-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, rgba(184, 115, 51, 0.25), rgba(232, 154, 77, 0.15));
+  border: 1px solid rgba(184, 115, 51, 0.3);
+  color: var(--accent-orange);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.skill-category-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(90deg, var(--accent-copper), var(--accent-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tag {
+  padding: 0.45rem 1rem;
+  background: rgba(184, 115, 51, 0.1);
+  border: 1px solid rgba(184, 115, 51, 0.35);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  color: var(--accent-orange);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover .skill-tag {
+  background: rgba(184, 115, 51, 0.18);
+  border-color: rgba(232, 154, 77, 0.55);
+  color: var(--text-primary);
+}
