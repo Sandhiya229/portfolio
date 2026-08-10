@@ -14,15 +14,22 @@ const Contact = () => {
     e.preventDefault();
     const { name, email, message } = formData;
 
-    // Build WhatsApp message
+    // Build WhatsApp message text
     const text = `Hello Sandhiya! 👋%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/919790278254?text=${text}`;
 
-    // Open WhatsApp with pre-filled message
-    window.open(`https://wa.me/919790278254?text=${text}`, '_blank');
+    // Use anchor click to avoid popup blockers
+    const anchor = document.createElement('a');
+    anchor.href = whatsappURL;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
 
     setSent(true);
     setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setSent(false), 4000);
+    setTimeout(() => setSent(false), 5000);
   };
 
   return (
