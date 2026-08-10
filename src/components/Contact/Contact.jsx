@@ -1,7 +1,30 @@
-import { Mail, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Phone, Send } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, message } = formData;
+
+    // Build WhatsApp message
+    const text = `Hello Sandhiya! 👋%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
+
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/919790278254?text=${text}`, '_blank');
+
+    setSent(true);
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setSent(false), 4000);
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="container">
@@ -27,7 +50,7 @@ const Contact = () => {
                 </div>
               </a>
 
-              <a href="tel:9790278254" className="contact-link-item">
+              <a href="https://wa.me/919790278254" target="_blank" rel="noreferrer" className="contact-link-item">
                 <div className="contact-icon-wrap">
                   <Phone size={20} />
                 </div>
@@ -41,24 +64,47 @@ const Contact = () => {
 
           {/* Contact Form Card */}
           <div className="contact-form-card animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="John Doe" required />
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="john@example.com" required />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                <textarea
+                  id="message"
+                  rows="5"
+                  placeholder="Tell me about your project..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
               </div>
 
               <button type="submit" className="btn btn-primary submit-btn">
-                Send Message
+                {sent ? '✅ Sent! Check WhatsApp' : (
+                  <><Send size={16} style={{ marginRight: '0.5rem' }} /> Send via WhatsApp</>
+                )}
               </button>
             </form>
           </div>
